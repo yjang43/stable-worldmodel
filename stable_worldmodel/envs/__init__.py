@@ -145,6 +145,10 @@ register(
     id='swm/PendulumControl-v1',
     entry_point=f'{_GYM_CONTROL}.pendulum:PendulumWrapper',
 )
+register(
+    id='swm/PointMaze_UMaze-v3',
+    entry_point='stable_worldmodel.envs.gymnasium_robotics.d4rl_point_maze_u_maze:D4RLPointMazeUMazeEnv',
+)
 
 _FETCH_ENTRY = 'stable_worldmodel.envs.gymnasium_robotics.fetch:FetchWrapper'
 

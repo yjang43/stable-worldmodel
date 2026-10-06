@@ -149,6 +149,10 @@ register(
     id='swm/PointMaze_UMaze-v3',
     entry_point='stable_worldmodel.envs.gymnasium_robotics.d4rl_point_maze_u_maze:D4RLPointMazeUMazeEnv',
 )
+register(
+    id='swm/PointMaze_Medium-v3',
+    entry_point='stable_worldmodel.envs.gymnasium_robotics.d4rl_point_maze_medium:D4RLPointMazeMediumEnv',
+)
 
 _FETCH_ENTRY = 'stable_worldmodel.envs.gymnasium_robotics.fetch:FetchWrapper'
 

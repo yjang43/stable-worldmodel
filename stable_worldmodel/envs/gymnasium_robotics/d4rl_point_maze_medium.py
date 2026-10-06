@@ -1,4 +1,4 @@
-"""PointMaze U-maze env."""
+"""PointMaze medium-maze env."""
 
 import os
 
@@ -8,21 +8,23 @@ import gymnasium as gym
 import gymnasium_robotics  # noqa: F401  (registers PointMaze envs)
 import mujoco
 import numpy as np
-from gymnasium_robotics.envs.maze.maps import U_MAZE
+from gymnasium_robotics.envs.maze.maps import MEDIUM_MAZE
 from PIL import Image
 
 from stable_worldmodel import spaces as swm_spaces
 
-# Top-down view of the U-maze (matching DINO-WM and the collectors exactly).
+# Top-down view of the medium maze (matching the collectors exactly). The
+# U-maze camera pulled back by 8/5 (8x8 vs 5x5 cells), so the maze fills
+# the frame alike.
 CAMERA = {
-    'distance': 8.8,
+    'distance': 14.08,
     'elevation': -90.0,
     'azimuth': 180.0,
     'lookat': np.array([0.0, 0.0, 0.0]),
 }
 
 
-class D4RLPointMazeUMazeEnv(gym.Env):
+class D4RLPointMazeMediumEnv(gym.Env):
     metadata = {'render_modes': ['rgb_array'], 'render_fps': 20}
 
     # DINO-WM's success threshold (point_maze_wrapper.eval_state).
@@ -32,13 +34,13 @@ class D4RLPointMazeUMazeEnv(gym.Env):
         super().__init__()
         self.render_mode = render_mode
         self.img_size = img_size
-        self.env_name = 'D4RLPointMazeUMaze'
+        self.env_name = 'D4RLPointMazeMedium'
         self.image_shape = (img_size, img_size, 3)
         self.state_dim = 4
 
         self.env = gym.make(
-            'PointMaze_UMaze-v3',
-            maze_map=U_MAZE,
+            'PointMaze_Medium-v3',
+            maze_map=MEDIUM_MAZE,
             reward_type='sparse',
             continuing_task=False,
             reset_target=False,
